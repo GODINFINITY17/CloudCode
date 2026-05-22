@@ -1,5 +1,5 @@
 
-const INSTANCE_URI = "http://localhost:3000";
+const INSTANCE_URI = import.meta.env.VITE_INSTANCE_URI || "http://localhost:3000";
 
 export const Output = () => {
     return <div style={{height: "40vh", background: "white"}}>

@@ -16,9 +16,14 @@ export class TerminalManager {
     }
     
     createPty(id: string, replId: string, onData: (data: string, id: number) => void) {
-        const term = spawn("powershell.exe", [], {
+        const shell = process.platform === 'win32' ? 'powershell.exe' : 'bash';
+        const term = spawn(shell, [], {
             cwd: path.join(__dirname, `../tmp/${replId}`),
             env: process.env
+        });
+
+        term.on("error", (err) => {
+            onData(`Terminal error: ${err.message}\r\n`, 0);
         });
 
         term.stdout.on("data", (data) => {

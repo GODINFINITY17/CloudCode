@@ -3,7 +3,7 @@ import { Editor } from './Editor';
 import { File, RemoteFile, Type } from './external/editor/utils/file-manager';
 import { useSearchParams } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { Output } from './Output';
+
 import { TerminalComponent as Terminal } from './Terminal';
 import { Socket, io } from 'socket.io-client';
 import { EXECUTION_ENGINE_URI } from '../config';
@@ -50,7 +50,6 @@ export const CodingPage = () => {
     const socket = useSocket(replId);
     const [fileStructure, setFileStructure] = useState<RemoteFile[]>([]);
     const [selectedFile, setSelectedFile] = useState<File | undefined>(undefined);
-    const [showOutput, setShowOutput] = useState(false);
 
     useEffect(() => {
         if (socket) {
@@ -100,14 +99,14 @@ export const CodingPage = () => {
             <Workspace>
                 <ActivityBar showSidebar={showSidebar} toggleSidebar={() => setShowSidebar(!showSidebar)} />
                 <Editor 
-                    socket={socket} 
+                    socket={socket as Socket} 
                     selectedFile={selectedFile} 
                     onSelect={onSelect} 
                     files={fileStructure} 
                     showSidebar={showSidebar}
                     onNewFile={handleNewFile}
                 >
-                    <Terminal socket={socket} />
+                    <Terminal socket={socket as Socket} />
                 </Editor>
             </Workspace>
             <StatusBar />
