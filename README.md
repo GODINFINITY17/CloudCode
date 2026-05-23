@@ -43,3 +43,9 @@ npm run dev
 ```
 
 Open your browser to `http://localhost:5173/coding/?replId=myworkspace` to see the editor in action.
+
+## 🚀 Live Deployment
+The application is fully deployed and accessible in the cloud.
+* **Live Application:** [https://frontend-sandy-eight-59.vercel.app](https://frontend-sandy-eight-59.vercel.app)
+* **Backend API / WebSocket:** Hosted on Render
+* **Cloud Storage:** Amazon S3
